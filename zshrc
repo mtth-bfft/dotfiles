@@ -74,7 +74,7 @@ HISTFILE=~/.history # share the history file with potential other files
 HISTSIZE=100000 # number of commands read when starting (not unique ones) 
 SAVEHIST=$HISTSIZE # number of commands saved when working
 setopt hist_ignore_space # do not record commands starting with a space
-#setopt share_history # share history between shells. Also enables appending.
+setopt share_history # share history between shells. Also enables appending.
 setopt extended_history # save the start UNIX timestamp and duration
 setopt hist_find_no_dups # remove duplicates in history searches
 setopt hist_reduce_blanks # remove duplicate spaces in history
