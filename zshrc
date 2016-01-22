@@ -212,4 +212,5 @@ alias grep="grep --color"
 alias ds="dirs -vp"
 alias please='sudo $(fc -ln -1)' 
 alias fuck='pkill -9'
+alias iptbls="iptables -nvL --line-numbers"
 
