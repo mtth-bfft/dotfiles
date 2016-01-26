@@ -88,7 +88,9 @@ DIRSTACKFILE="$HOME/.cache/zsh/dirs" # use a user-specific file to store it
 # we have to manually reload the stack on startup
 if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
     dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
-    [[ -d $dirstack[1] ]] && cd $dirstack[1]
+    # and jump to the top-one at shell start if a start folder wasn't given
+    # in argv
+    [[ -d $dirstack[1] && "$(pwd)" == "$HOME" ]] && cd $dirstack[1]
 fi
 chpwd_dirstack_hook() {
     print -l $PWD ${(u)dirstack} >$DIRSTACKFILE
