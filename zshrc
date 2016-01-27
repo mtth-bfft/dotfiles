@@ -208,8 +208,9 @@ for cmd in chown chmod cp rm; do
 done
 
 alias ls="ls --color=auto"
-alias ll="ls -alh --color=auto"
-alias lll="ls -alhZ --color=auto"
+alias l="ls -alhp --color=auto"
+alias ll="ls -alhp --color=auto"
+alias lll="ls -alhpZ --color=auto"
 alias grep="grep --color"
 alias ds="dirs -vp"
 alias please='sudo $(fc -ln -1)' 
