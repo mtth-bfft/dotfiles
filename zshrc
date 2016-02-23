@@ -189,7 +189,7 @@ add-zsh-hook precmd gitstatus_prompt
 PROMPT='┌ '
 PROMPT+='%(!.%{$root_color%}.%{$user_color%})%n%{$reset_color%}'
 PROMPT+='%{$host_color%}@%m%{$reset_color%}'
-PROMPT+=':%{$cwd_color%}%~%{$reset_color%}'
+PROMPT+=':%{$cwd_color%}%3~%{$reset_color%}'
 PROMPT+='%(1V.%{$venv_color%}(%1v)%{$reset_color%}.)'
 PROMPT+='%(2V.%(4V.%(5V.%{$git_commit_ready%}.%{$git_branch_dirty%}).%{$git_branch_clean%})[$vcs_info_msg_0_%(3V.%3v.)]%{$reset_color%}.)'
 PROMPT+='
