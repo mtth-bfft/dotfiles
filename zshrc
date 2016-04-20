@@ -154,19 +154,19 @@ function virtualenv_prompt() {
     fi
 }
 function gitstatus_prompt() {
-    if git status >/dev/null 2>/dev/null; then
+    if gitstatus=$(git status --porcelain 2>/dev/null); then
         psvar[2]='1'
-        untracked=$(git status --porcelain 2>/dev/null | grep "^??" | wc -l)
+        untracked=$(echo "$gitstatus" | grep "^??" | wc -l)
         if [[ "$untracked" -ne "0" ]]; then
             psvar[3]="$git_untracked_flag"
         else
             psvar[3]=''
         fi
-        modified=$(git status --porcelain 2>/dev/null | grep "M" | wc -l)
-        unstaged=$(git status --porcelain 2>/dev/null | grep "^ M" | wc -l)
-        if [[ "$modified" -ne "0" ]]; then
+        modified=$(echo "$gitstatus" | grep "M" | wc -l)
+        unstaged=$(echo "$gitstatus" | grep "^ M" | wc -l)
+        if [[ "$modified" -ne "0" || "$untracked" -ne "0" ]]; then
             psvar[4]='M'
-            if [[ "$unstaged" -eq "0" ]]; then
+            if [[ "$unstaged" -eq "0" && "$untracked" -eq "0" ]]; then
                 psvar[5]='R'
             else
                 psvar[5]=''
@@ -216,4 +216,6 @@ alias ds="dirs -vp"
 alias please='sudo $(fc -ln -1)' 
 alias fuck='pkill -9'
 alias iptbls="iptables -nvL --line-numbers"
+
+schedule-sleep () { sleep "$1" && (for i in {1..100}; do pactl set-sink-volume 1 -- "-1%"; sleep 1; done) && systemctl suspend }
 

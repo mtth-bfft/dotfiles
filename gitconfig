@@ -20,3 +20,5 @@
     # that have a name matching a distant one.
 	default = simple
 
+[status]
+	relativePaths = false
