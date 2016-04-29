@@ -17,7 +17,7 @@ for f in zshrc vimrc gitconfig; do
 done
 
 # Create the location where the directory stack will be stored
-mkdir -p .cache/zsh/
+mkdir -p "$HOME/.cache/zsh/"
 
 # Check that ZSH is the default shell
 DEFSHELL=`grep "^$USER:" /etc/passwd | cut -d ":" -f 7-`
