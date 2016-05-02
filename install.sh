@@ -3,6 +3,12 @@
 # Strict mode
 set -euo pipefail
 
+# Check prerequisites
+if ! which zsh >/dev/null 2>&1; then
+	echo " [!] Please install zsh first" >&2
+	exit 1
+fi
+
 # Sourcing this script will fail.
 SCRIPT=`readlink -f -- $0`
 REPO=`dirname "$SCRIPT"`
