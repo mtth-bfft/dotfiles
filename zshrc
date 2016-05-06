@@ -155,7 +155,7 @@ function virtualenv_prompt() {
     fi
 }
 function gitstatus_prompt() {
-    if gitstatus=$(git status --porcelain 2>/dev/null); then
+    if [[ "${NO_GIT_PROMPT:-0}" == "0" ]] && gitstatus=$(git status --porcelain 2>/dev/null); then
         psvar[2]='1'
         untracked=$(echo "$gitstatus" | grep "^??" | wc -l)
         if [[ "$untracked" -ne "0" ]]; then
