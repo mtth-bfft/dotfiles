@@ -131,7 +131,7 @@ chpwd_functions=(${chpwd_functions[@]} "virtualenv_lookup_activate")
 autoload -U colors && colors # we're gonna use $fg[colorname] variables
 setopt promptsubst # we're gonna use parameter expansion and command substitution in our prompts
 setopt notify # print background job statuses without waiting for the next prompt
-export VIRTUAL_ENV_DISABLE_PROMPT='yes' # prevent venv/bin/activate from changing our prompt 
+export VIRTUAL_ENV_DISABLE_PROMPT='yes' # prevent venv/bin/activate from changing our prompt
 export _OLD_VIRTUAL_PS1='' # remove any pre-activation prompt already saved
 
 root_color="%{$fg_bold[red]%}"
