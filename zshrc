@@ -218,3 +218,11 @@ alias please='sudo $(fc -ln -1)'
 alias fuck='pkill -9'
 alias iptbls="iptables -nvL --line-numbers"
 
+###############################################################################
+###                       Machine-Local cusomisations                       ###
+###############################################################################
+
+if [[ -f local_zshrc ]]; then
+	source local_zshrc
+fi
+

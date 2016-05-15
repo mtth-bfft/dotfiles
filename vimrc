@@ -13,7 +13,6 @@ syntax on               " Syntax highlighting
 
 set linebreak           " Break lines at word (requires Wrap lines)
 set showbreak=+++       " Wrap-broken line prefix
-set textwidth=100       " Line wrap (number of cols)
 set showmatch           " Highlight matching brace
 set errorbells          " Beep or flash screen on errors
 set visualbell          " Use visual bell (no beeping)
@@ -47,7 +46,7 @@ autocmd FileType c setlocal noexpandtab " do not transform tabs into spaces
 autocmd FileType c set tabstop=8      " display tabs as 8 spaces
 autocmd FileType c set shiftwidth=8   " number of spaces when starting new lines
 autocmd FileType c set softtabstop=8  " delete space-tabs 8 spaces (1 tab) at a time
-autocmd FileType c set textwidth=80   " wrap after 80 columns
+autocmd FileType c set colorcolumn=80 " red ruler at 80 columns
 
 ""
 "" Makefile-specific settings
