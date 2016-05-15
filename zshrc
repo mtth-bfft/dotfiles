@@ -222,7 +222,5 @@ alias iptbls="iptables -nvL --line-numbers"
 ###                       Machine-Local cusomisations                       ###
 ###############################################################################
 
-if [[ -f local_zshrc ]]; then
-	source local_zshrc
-fi
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
 
