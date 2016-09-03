@@ -2,6 +2,13 @@
 
 set ruler               " Show row and column ruler information
 set number              " Show line numbers
+set laststatus=2	" Permanently show the status bar
+set statusline=%F
+set statusline+=%y
+set statusline+=%r
+set statusline+=%l/%L
+set statusline+=:
+set statusline+=%c	" See :help statusline
 set showcmd
 
 set undolevels=1000     " Number of undo levels
@@ -26,7 +33,7 @@ filetype indent on
 set autoindent          " Auto-indent new lines
 set smartindent         " Enable smart-indent
 set smarttab            " Enable smart-tabs
-set softtabstop=8       " Number of spaces per Tab
+set softtabstop=4       " Number of spaces per Tab
 
 ""
 "" Trailing space highlighting

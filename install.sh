@@ -15,7 +15,7 @@ REPO=`dirname "$SCRIPT"`
 ZSH=`which zsh`
 USER=`whoami`
 
-for f in zshrc vimrc gitconfig; do
+for f in zshrc vimrc gitconfig gdbinit; do
     if [[ -f "$HOME/.$f" && ! -h "$HOME/.$f" ]]; then
         cp -v "$HOME/.$f" "$HOME/.$f.bak"
     fi

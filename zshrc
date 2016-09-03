@@ -158,16 +158,16 @@ function gitstatus_prompt() {
     if [[ "${NO_GIT_PROMPT:-0}" == "0" ]] && gitstatus=$(git status --porcelain 2>/dev/null); then
         psvar[2]='1'
         untracked=$(echo "$gitstatus" | grep "^??" | wc -l)
-        if [[ "$untracked" -ne "0" ]]; then
+        if [[ $untracked -gt 0 ]]; then
             psvar[3]="$git_untracked_flag"
         else
             psvar[3]=''
         fi
         modified=$(echo "$gitstatus" | grep "M" | wc -l)
         unstaged=$(echo "$gitstatus" | grep "^ M" | wc -l)
-        if [[ "$modified" -ne "0" || "$untracked" -ne "0" ]]; then
+        if [[ $modified -gt 0 || $untracked -gt 0 ]]; then
             psvar[4]='M'
-            if [[ "$unstaged" -eq "0" && "$untracked" -eq "0" ]]; then
+            if [[ $unstaged -gt 0 && $untracked -gt 0 ]]; then
                 psvar[5]='R'
             else
                 psvar[5]=''
@@ -209,8 +209,8 @@ for cmd in chown chmod cp rm; do
 done
 
 alias ls="ls --color=auto"
-alias l="ls -alhp --color=auto"
-alias ll="ls -alhp --color=auto"
+alias l="ls -Alhp --color=auto"
+alias ll="ls -Alhp --color=auto"
 alias lll="ls -alhpZ --color=auto"
 alias grep="grep --color"
 alias ds="dirs -vp"
