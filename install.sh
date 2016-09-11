@@ -12,8 +12,14 @@ fi
 # Sourcing this script will fail.
 SCRIPT=`readlink -f -- $0`
 REPO=`dirname "$SCRIPT"`
-ZSH=`which zsh`
 USER=`whoami`
+
+# Locate zsh: on CentOS `which` gives /usr/bin/zsh but
+# only /bin/zsh is registered in /etc/shells ...
+ZSH=`grep zsh /etc/shells | head -n1`
+if [[ -z $ZSH ]] || ! [[ -x $ZSH ]]; then
+    ZSH=`which zsh`
+fi
 
 for f in zshrc vimrc gitconfig gdbinit; do
     if [[ -f "$HOME/.$f" && ! -h "$HOME/.$f" ]]; then
