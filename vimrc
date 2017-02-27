@@ -1,5 +1,10 @@
 "" General settings
 
+noremap <Up> <NOP>
+noremap <Down> <NOP>
+noremap <Left> <NOP>
+noremap <Right> <NOP>
+
 set ruler               " Show row and column ruler information
 set number              " Show line numbers
 set laststatus=2	" Permanently show the status bar
@@ -16,6 +21,7 @@ set backspace=indent,eol,start  " Backspace behaviour
 set autoindent          " copy indent from current line when starting a new line
 
 set background=dark     " Dark colourset
+colorscheme custom-colors
 syntax on               " Syntax highlighting
 
 set linebreak           " Break lines at word (requires Wrap lines)
@@ -29,7 +35,7 @@ set smartcase           " Enable smart-case search
 set ignorecase          " Always case-insensitive
 set incsearch           " Searches for strings incrementally
 
-filetype indent on
+filetype indent plugin on
 set autoindent          " Auto-indent new lines
 set smartindent         " Enable smart-indent
 set smarttab            " Enable smart-tabs
@@ -69,10 +75,9 @@ autocmd FileType make set softtabstop=8  " delete space-tabs 8 spaces (1 tab) at
 ""
 
 " Python PEP8 compliant indentation
-autocmd FileType python set tabstop=4    " display tabs as 4 spaces
-autocmd FileType python set expandtab    " <tab> inserts spaces
+autocmd FileType python set tabstop=8    " display tabs as 8 spaces
+autocmd FileType python set expandtab    " <TAB> inserts spaces
 autocmd FileType python set shiftwidth=4 " number of spaces when starting new lines
-autocmd FileType python set textwidth=72 " break lines when line length increases
 autocmd FileType python set softtabstop=4 " delete space-tabs 4 spaces (1 tab) at a time
-
+autocmd FileType python set textwidth=72 " break lines when line length increases
 

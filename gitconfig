@@ -1,11 +1,11 @@
 [core]
-	editor = vim
+    editor = vim
 
 [color]
-	status = auto
-	branch = auto
-	interactive = auto
-	diff = auto
+    status = auto
+    branch = auto
+    interactive = auto
+    diff = auto
 
 [alias]
     l = log --oneline -n 20 --graph --decorate --abbrev-commit
@@ -14,7 +14,7 @@
 [push]
     # Only push the current branch to the remote, not all those
     # that have a name matching a distant one.
-	default = simple
+    default = simple
 
 [status]
-	relativePaths = false
+    relativePaths = false

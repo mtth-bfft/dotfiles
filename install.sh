@@ -3,41 +3,49 @@
 # Strict mode
 set -euo pipefail
 
-# Check prerequisites
+# Prerequisites
 if ! which zsh >/dev/null 2>&1; then
-	echo " [!] Please install zsh first" >&2
-	exit 1
+    echo " [!] Please install zsh first" >&2
+    exit 1
 fi
 
-# Sourcing this script will fail.
 SCRIPT=`readlink -f -- $0`
 REPO=`dirname "$SCRIPT"`
-USER=`whoami`
-
-# Locate zsh: on CentOS `which` gives /usr/bin/zsh but
-# only /bin/zsh is registered in /etc/shells ...
-ZSH=`grep zsh /etc/shells | head -n1`
-if [[ -z $ZSH ]] || ! [[ -x $ZSH ]]; then
+USER=`id -u`
+if ! which zsh &>/dev/null; then
+    ZSH=`grep zsh /etc/shells | head -n1`
+else
     ZSH=`which zsh`
 fi
 
-for f in zshrc vimrc gitconfig gdbinit; do
-    if [[ -f "$HOME/.$f" && ! -h "$HOME/.$f" ]]; then
-        cp -v "$HOME/.$f" "$HOME/.$f.bak"
+function install_dotfile() {
+    if [[ -f "$HOME/$2" && ! -h "$HOME/$2" ]]; then
+        cp -v "$HOME/$2" "$HOME/$2.bak"
     fi
-        rm -v -f "$HOME/.$f" && ln -v -s "$REPO/$f" "$HOME/.$f"
+    [[ -d "$(dirname "$HOME/$2")" ]] || mkdir -p "$(dirname "$HOME/$2")"
+    rm -v -f "$HOME/$2"
+    ln -v -s "$REPO/$1" "$HOME/$2"
+}
+
+install_dotfile xresources .config/xresources
+install_dotfile xmodmap .config/xmodmap
+install_dotfile i3config .config/i3/config
+install_dotfile htoprc .config/htop/htoprc
+install_dotfile vimcolors .vim/colors/custom-colors.vim
+
+for f in xinitrc zprofile zshrc vimrc gitconfig gdbinit; do
+    install_dotfile $f ".$f"
 done
 
-# Create the location where the directory stack will be stored
 mkdir -p "$HOME/.cache/zsh/"
 
 # Check that ZSH is the default shell
-DEFSHELL=`grep "^$USER:" /etc/passwd | cut -d ":" -f 7-`
+DEFSHELL=`getent passwd "$USER" | cut -d ":" -f 7-`
 DEFSHELL=`basename "$DEFSHELL"`
 echo " [*] Default shell is $DEFSHELL"
 if [[ "$DEFSHELL" != "zsh" ]]; then
-	echo " [*] Changing default shell for $USER to $ZSH"
-	chsh -s "$ZSH" "$USER"
-	exec "$ZSH"
+    echo " [*] Changing default shell for $USER to $ZSH"
+    chsh -s "$ZSH" "$USER"
+    exec "$ZSH"
 fi
 

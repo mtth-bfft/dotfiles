@@ -1,0 +1,16 @@
+xterm*faceName: Source Code Pro Ultralight
+xterm*faceSize: 8
+xterm*locale: true
+xterm*metaSendsEscape: true
+xterm*saveLines: 10240
+xterm*borderWidth: 0
+xterm*internalBorder: 0
+xterm*bellIsUrgent: true
+xterm*visualBell: true
+
+xterm*VT100.Translations: #override \
+	Ctrl Shift <Key>V:	insert-selection(CLIPBOARD) \n\
+	Ctrl Shift <Key>C:	copy-selection(CLIPBOARD)
+
+xterm*background: rgb:10/10/10
+xterm*foreground: rgb:e8/e8/d3
