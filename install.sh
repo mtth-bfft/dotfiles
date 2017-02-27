@@ -45,7 +45,7 @@ DEFSHELL=`basename "$DEFSHELL"`
 echo " [*] Default shell is $DEFSHELL"
 if [[ "$DEFSHELL" != "zsh" ]]; then
     echo " [*] Changing default shell for $USER to $ZSH"
-    chsh -s "$ZSH" "$USER"
+    chsh -s "$ZSH"
     exec "$ZSH"
 fi
 
