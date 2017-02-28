@@ -204,7 +204,7 @@ RPROMPT+=' [%(?.%{$status_zero_color%}.%{$status_nonzero_color%})%?%{$reset_colo
 ###############################################################################
 
 # make file-handling commands more verbose
-for cmd in chown chmod cp rm; do
+for cmd in chown chmod; do
     alias $cmd="$cmd -v"
 done
 
