@@ -30,6 +30,7 @@ function install_dotfile() {
 install_dotfile xresources .config/xresources
 install_dotfile xmodmap .config/xmodmap
 install_dotfile i3config .config/i3/config
+install_dotfile i3status .config/i3status/config
 install_dotfile htoprc .config/htop/htoprc
 install_dotfile vimcolors .vim/colors/custom-colors.vim
 
