@@ -46,7 +46,7 @@ disk "/" {
 
 battery all {
 	format_down = ""
-	format = "%status %remaining %consumption %emptytime"
+	format = "%status %percentage %remaining %consumption"
 	threshold_type = "time"
 	low_threshold = 30
 	hide_seconds = true
