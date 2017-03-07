@@ -8,8 +8,8 @@
     diff = auto
 
 [alias]
-    l = log --oneline -n 20 --graph --decorate --abbrev-commit
-    s = status --short
+    lg = log --oneline -n 20 --graph --decorate --abbrev-commit --branches --tags --remotes
+    st = status --short
 
 [push]
     # Only push the current branch to the remote, not all those
