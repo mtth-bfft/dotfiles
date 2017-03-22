@@ -11,10 +11,12 @@ if ! zsh -c "echo" &>/dev/null; then
 fi
 
 SCRIPT=`readlink -f -- $0`
-REPO=`dirname "$SCRIPT"`
-HOME=`dirname "$REPO"`
+REPO=$(dirname "$SCRIPT")
+HOME=$(dirname "$REPO")
+# Don't use id/whoami in case we're root in an OS install script
 USER=`stat --format="%u" "$SCRIPT"`
-if ! which zsh &>/dev/null; then
+# Find a ZSH binary recognised by chsh (sometimes `which zsh` gives another one)
+if ! grep -q zsh /etc/shells; then
     ZSH=`grep zsh /etc/shells | head -n1`
 else
     ZSH=`which zsh`
@@ -24,7 +26,7 @@ function install_dotfile() {
     [[ -h "$HOME/$2" ]] && rm -f "$HOME/$2"
     [[ -f "$HOME/$2" ]] && mv -v "$HOME/$2" "$HOME/$2.bak"
     mkdir -p "$(dirname "$HOME/$2")"
-    ln -s "$REPO/$1" "$HOME/$2"
+    ln -rs "$REPO/$1" "$HOME/$2"
 }
 
 install_dotfile xresources .config/xresources
